@@ -1,0 +1,1 @@
+attributes :id, :name, :is_admin, :email, :created_at, :updated_at, :phone_numbers, :street_addresses

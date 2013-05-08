@@ -1,0 +1,26 @@
+<p>
+  We received a request to change your credentials for <%= @user.email %>
+  at the BBBBadass website. If you received this email in error, simply
+  ignore it. This reset code will expire in 24 hours and will be purged from our database.
+</p>
+
+<p>
+  To update your credentials, please click on the link below:
+</p>
+
+<p>
+  <a href="<%= @url %>"><%= @url %></a>
+</p>
+
+<p>
+  If clicking on the email does not work, please copy and paste the link into
+  the address bar on your browser and hit Enter. Once you've arrived at the page,
+  you'll be given further instructions.
+</p>
+
+<p>
+  Sincerely,<br>
+  BBBBadass
+</p>
+
+<p><%= DateTime.now %></p>

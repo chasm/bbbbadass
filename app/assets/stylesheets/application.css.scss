@@ -1,0 +1,126 @@
+/*
+ *= require_self
+ */
+
+@import "twitter/bootstrap";
+
+caption {
+  font-size: 20px;
+  font-weight: normal;
+  text-align: left;
+  text-transform: uppercase;
+  line-height: 40px;
+  color: rgb(16, 122, 179);
+  border-bottom: 2px solid gray;
+}
+
+h2, h3 {
+  font-weight: normal;
+  color: rgb(16, 122, 179);
+}
+
+table th.number-column,
+table td.number-column {
+  text-align: right;
+}
+
+.available {
+  color: rgb(0, 153, 51);
+}
+
+.pending {
+  color: rgb(255, 153, 0);
+}
+
+.sold {
+  color: rgb(255, 0, 0);
+}
+
+span.n_a {
+  text-transform: lowercase;
+  color: rgb(204, 204, 204);
+}
+
+span.yes {
+  text-transform: uppercase;
+  color: rgb(0, 153, 51);
+}
+
+span.no {
+  text-transform: lowercase;
+  color: rgb(255, 0, 0);
+}
+
+span.req {
+  color: rgb(255, 0, 0);
+}
+
+.spaced {
+  margin-bottom: 80px;
+}
+
+.spaced-less {
+  margin-bottom: 40px;
+}
+
+.spaced-more {
+  margin-bottom: 120px;
+}
+
+.bca-checkbox {
+  display: inline-block;
+  padding: 5px 0 5px 20px;
+  margin-left: 10px;
+}
+
+fieldset {
+  margin-bottom: 50px !important;
+}
+
+.my-buttons button {
+  text-decoration: line-through;
+  margin: 22px 0 20px;
+}
+
+p.form_cell {
+  height: 65px;
+}
+
+p.form_cell button {
+  margin: 0;
+}
+
+.my-buttons button.active {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: rgb(91, 182, 91);
+  background-image: -moz-linear-gradient(top, rgb(98, 196, 98), rgb(81, 163, 81));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(98, 196, 98)), to(rgb(81, 163, 81)));
+  background-image: -webkit-linear-gradient(top, rgb(98, 196, 98), rgb(81, 163, 81));
+  background-image: -o-linear-gradient(top, rgb(98, 196, 98), rgb(81, 163, 81));
+  background-image: linear-gradient(to bottom, rgb(98, 196, 98), rgb(81, 163, 81));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF62C462', endColorstr='#FF51A351', GradientType=0);
+  border-color: rgb(81, 163, 81) rgb(81, 163, 81) rgb(56, 112, 56);
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+td.special_features {
+  height: 147px;
+}
+
+.password-strength-meter {
+  display: none;
+}
+
+.login_form button {
+  margin-top: -10px;
+}
+
+.logo {
+  margin-top: 50px;
+  margin-top: 50px;
+}

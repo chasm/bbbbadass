@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  area_code: MyString
+  line_number: MyString
+  extension: MyString
+  purpose: MyString
+
+two:
+  area_code: MyString
+  line_number: MyString
+  extension: MyString
+  purpose: MyString

@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="row">
+    <div class="span8 offset2" style="margin-top: 100px">
+      <h2>
+        Please reset your password
+        <span class="pull-right">
+          <button id="show_hide_passwords_btn" class="btn btn-warning" data-toggle="button">Show Passwords</button>
+        </span>
+      </h2>
+    </div>
+    <div class="span4">
+      <%= form_for @user, :url => "/reset/#{params[:code]}" do |f| %>
+        <p>
+          <%= f.password_field :password, :placeholder => 'New password' %>
+        </p>
+        <p>
+          <%= f.password_field :password_confirmation, :placeholder => 'Confirm password' %>
+          <span id="password_match"></span>
+        </p>
+        <p>
+          <%= f.submit 'Reset Password', :class => 'btn btn-danger' %>
+        </p>
+      <% end %>
+    </div>
+    <div class="span4">
+      <p>
+        <div id="strength_0" class="progress progress-danger password-strength-meter">
+          <div class="bar"></div>
+        </div>
+        <div id="strength_25" class="progress progress-danger password-strength-meter">
+          <div class="bar" style="width: 25%"></div>
+        </div>
+        <div id="strength_50" class="progress progress-warning password-strength-meter">
+          <div class="bar" style="width: 50%"></div>
+        </div>
+        <div id="strength_75" class="progress progress-info password-strength-meter">
+          <div class="bar" style="width: 75%"></div>
+        </div>
+        <div id="strength_100" class="progress progress-success password-strength-meter">
+          <div class="bar" style="width: 100%"></div>
+        </div>
+        <div>Time to crack: <strong id="crack_time_display">instant</strong></div>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
+
+<script type="text/javascript">
+  $(function() {
+    "use strict";
+  
+    var user_password, user_password_confirmation, password_match,
+      strength_0, strength_25, strength_50, strength_75, strength_100,
+      crack_time_display, password_strength_meter, show_hide_passwords_btn,
+      password_form;
+  
+    user_password = $('#user_password');
+    user_password_confirmation = $('#user_password_confirmation');
+    password_match = $('#password_match');
+    strength_0 = $('#strength_0');
+    strength_25 = $('#strength_25');
+    strength_50 = $('#strength_50');
+    strength_75 = $('#strength_75');
+    strength_100 = $('#strength_100');
+    crack_time_display = $('#crack_time_display');
+    password_strength_meter = $('.password-strength-meter');
+    show_hide_passwords_btn = $('#show_hide_passwords_btn');
+    password_form = $('edit_user');
+  
+    show_hide_passwords_btn.on('click', function() {
+      if ($(this).hasClass('active')) {
+        user_password.attr('type','password');
+        user_password_confirmation.attr('type','password');
+        show_hide_passwords_btn.html("Show Passwords");
+        show_hide_passwords_btn.removeClass('btn-success');
+        show_hide_passwords_btn.addClass('btn-warning');
+      
+      } else {
+        user_password.attr('type','text');
+        user_password_confirmation.attr('type','text');
+        show_hide_passwords_btn.html("Hide Passwords");
+        show_hide_passwords_btn.removeClass('btn-warning');
+        show_hide_passwords_btn.addClass('btn-success');
+      }
+    });
+  
+    console.log("user_password_confirmation: ");
+    console.log(user_password_confirmation);
+  
+    $.getScript("/js/zxcvbn.js", function() {
+      console.log("zxcvbn loaded!");
+      user_password.on('keyup', show_strength);
+      user_password.on('blur', show_strength);
+      strength_0.show();
+    });
+  
+    var show_strength = function(e) {
+      var response;
+    
+      response = zxcvbn($(this).val());
+    
+      password_strength_meter.hide();
+      crack_time_display.html(response.crack_time_display);
+    
+      switch (response.score) {
+        case 1:
+          strength_25.show();
+          break;
+        case 2:
+          strength_50.show();
+          break;
+        case 3:
+          strength_75.show();
+          break;
+        case 4:
+          strength_100.show();
+          break;
+        default:
+          strength_0.show();
+      }
+    
+      show_match();
+    };
+  
+    var show_match = function() {
+      console.log("show_match: " + user_password.val() + " === " +  user_password_confirmation.val());
+      if (user_password.val() == user_password_confirmation.val()) {
+        password_match.html('<span class="matched">matched!</span>');
+      } else {
+        password_match.html('<span class="unmatched">not matched!</span>');
+      }
+    };
+  
+    user_password_confirmation.on('keyup', show_match);
+    user_password_confirmation.on('blur', show_match);
+    
+    var validate_password = function() {
+      noty({text: "validating password", type: "information"});
+      return false;
+    };
+    
+    password_form.on('submit', validate_password);
+  });
+</script>
+
+<%= render 'layouts/messages' %>

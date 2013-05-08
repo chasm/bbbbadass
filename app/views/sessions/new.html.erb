@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="span6" style="margin-top: 100px">
+      <h2>Please log in!</h2>
+      <form class="login_form" action="/login" method="post">
+        <p>
+          <input type="text" name="email" placeholder="Email address">
+        </p>
+        <p>
+          <input id="password" name="password" type="password" placeholder="Password">
+          <button id="show_button" class="btn btn-warning">Show Password</button>
+        </p>
+        <p>
+          <input type="submit" value="Log in" class="btn btn-info">
+        </p>
+      </form>
+    </div>
+    <div class="span6" style="margin-top: 100px">
+      <h3>Lost password?</h3>
+      <p>
+        No problem! To reset your password, simply leave the password field blank when you
+        log in. You'll receive an email shortly with an encoded link. Follow the link and you'll
+        be directed to a page where you may set a new password. It's easy.
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
+
+<script type="text/javascript">
+  $(function() {
+    var show_button, password;
+    
+    show_button = $('#show_button');
+    password = $('#password');
+    
+    show_button.on('click', function() {
+      if ($(this).hasClass('active')) {
+        password.attr('type','password');
+        show_button.html("Show Password");
+        show_button.removeClass('btn-success');
+        show_button.removeClass('active');
+        show_button.addClass('btn-warning');
+    
+      } else {
+        password.attr('type','text');
+        show_button.html("Hide Password");
+        show_button.removeClass('btn-warning');
+        show_button.addClass('btn-success');
+        show_button.addClass('active');
+      }
+      return false;
+    });
+  });
+</script>
+
+<%= render 'layouts/messages' %>

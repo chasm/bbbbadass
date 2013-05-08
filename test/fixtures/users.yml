@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  hash: MyString
+  salt: MyString
+  code: MyString
+  expires_at: 2013-05-08 15:34:44
+  is_admin: false
+
+two:
+  name: MyString
+  email: MyString
+  hash: MyString
+  salt: MyString
+  code: MyString
+  expires_at: 2013-05-08 15:34:44
+  is_admin: false
